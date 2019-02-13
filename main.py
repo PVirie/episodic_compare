@@ -12,7 +12,7 @@ if __name__ == "__main__":
     device = torch.device("cuda:0")
 
     batch_size = 1
-    dataset = FashionMNIST(device, batch_size=batch_size, max_per_class=1000, seed=0, group_size=2)
+    dataset = FashionMNIST(device, batch_size=batch_size, max_per_class=200, seed=0, group_size=1)
 
     comparator = Compare(device)
     episodic = Episodic(device)
@@ -37,7 +37,7 @@ if __name__ == "__main__":
             print("Percent correct: ", percent_correct)
 
         episodic.learn(input, output)
-        p, n = episodic.sample(output, 10, 10)
+        p, n = episodic.sample(output, 20, 20)
         comparator.learn(input, p, n, steps=1)
 
         img = np.reshape(data.numpy(), [-1, data.shape[2]])

@@ -49,10 +49,10 @@ class Compare:
         self.stride = stride
         self.padding = (kernel_size[0] // 2, kernel_size[0] // 2)
 
-        self.weights.extend(resnet_weights(self.device, 1, self.kernel_size, 4))
-        self.weights.extend(resnet_weights(self.device, 4, self.kernel_size, 8))
-        self.weights.extend(resnet_weights(self.device, 8, self.kernel_size, 16))
-        self.weights.extend(resnet_weights(self.device, 16, self.kernel_size, 32))
+        self.weights.extend(resnet_weights(self.device, 1, self.kernel_size, 32))
+        self.weights.extend(resnet_weights(self.device, 32, self.kernel_size, 64))
+        self.weights.extend(resnet_weights(self.device, 64, self.kernel_size, 128))
+        self.weights.extend(resnet_weights(self.device, 128, self.kernel_size, 32))
 
     def __internal__forward(self, input):
         batch = input.shape[0]
